@@ -14,4 +14,14 @@ class DashboardState(BaseState):
         {"name": "존 도", "age": 30, "role": "개발자"},
         {"name": "제인 도", "age": 28, "role": "디자이너"},
     ]
+
+    def add_user(self, form_data: dict):
+        if not form_data.get("name") or not form_data.get("age") or not form_data.get("role"):
+            return rx.window_alert("모든 필드를 입력해주세요.")
+
+        self.users.append({
+            "name": form_data["name"],
+            "age": form_data["age"],
+            "role": form_data["role"],
+        })
     pass
