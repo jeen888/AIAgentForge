@@ -1,3 +1,5 @@
+import reflex as rx
+
 try:
     from AIAgentForge.state.base import BaseState
 except ImportError:
@@ -14,6 +16,10 @@ class DashboardState(BaseState):
         {"name": "존 도", "age": 30, "role": "개발자"},
         {"name": "제인 도", "age": 28, "role": "디자이너"},
     ]
+
+    @rx.var
+    def total_users(self) -> int:
+        return len(self.users)
 
     def add_user(self, form_data: dict):
         if not form_data.get("name") or not form_data.get("age") or not form_data.get("role"):

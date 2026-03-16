@@ -7,6 +7,10 @@ def dashboard_page() -> rx.Component:
             # 1. 제목
             rx.heading("사용자 대시보드", size="8", margin_bottom="1em"),
 
+            # 총 사용자 수 표시
+            # rx.text(f"총 사용자 수: {len(DashboardState.users)}", size="md", color="gray.500", margin_bottom="1em"),
+            rx.text(f"총 사용자 수: {DashboardState.total_users} 명", size="6"),
+
             # 2. 테이블 (데이터 표시 영역)
             rx.table.root(
                 rx.table.header(
@@ -32,6 +36,18 @@ def dashboard_page() -> rx.Component:
 
             rx.divider(), # 테이블과 폼 사이에 구분선 추가
 
+            # recharts 막대 그래프 추가 (예시 데이터 사용
+            rx.recharts.bar_chart(
+                rx.recharts.bar(
+                    data_key="age", stroke="#8884d8", fill="#8884d8"
+                ),
+                rx.recharts.x_axis(data_key="name"),
+                rx.recharts.y_axis(),
+                data=DashboardState.users,
+                width="100%",
+                height=300
+            ),
+
             # 3. 입력 폼 (데이터 입력 영역)
             # 테이블 바로 아래에 위치하도록 vstack의 자식으로 배치합니다.
             rx.form(
@@ -40,6 +56,7 @@ def dashboard_page() -> rx.Component:
                     rx.input(placeholder="나이", name="age", type="number", required=True, flex="1"),
                     rx.input(placeholder="역할", name="role", required=True, flex="1"),
                     rx.button("사용자 추가", type="submit", color_scheme="blue"),
+                    rx.button("리셋", type="button", color_scheme="red"),
                     width="100%",
                     spacing="3",
                     margin_top="1em",
