@@ -5,6 +5,8 @@ try:
 except ImportError:
     from pages.dashboard import dashboard_page
 
+from AIAgentForge.pages.chat import chat_page
+
 # 앱 인스턴스 생성, 테마, 스타일시트 등 앱 전반의 설정을 여기서 할 수 있음.
 app=rx.App()
 
@@ -12,6 +14,9 @@ app=rx.App()
 # 여기서는 루트 URL("/")에 대시보드 페이지를 연결합니다.
 # app.add_page(dashboard_page, path="/")
 app.add_page(dashboard_page, route="/")
+
+# 새로운 채팅 페이지를 '/chat' 경로에 추가합니다.
+app.add_page(chat_page, route="/chat")
 
 
 # """Welcome to Reflex! This file outlines the steps to create a basic app."""
