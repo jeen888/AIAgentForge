@@ -45,7 +45,7 @@ class ChatState(BaseState):
             )
             # for m in client.models.list():
             #     print(m.name)
-
+    
             async for chunk in response:
                 if chunk.text:
                     answer_text += chunk.text
