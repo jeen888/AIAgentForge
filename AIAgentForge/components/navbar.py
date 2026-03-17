@@ -8,6 +8,10 @@ def navbar() -> rx.Component:
         rx.cond(
             AuthState.is_authenticated,
             rx.hstack(
+                rx.link("Dashboard", href="/"),
+                rx.link("Collections", href="/collections"),
+                rx.link("Chat", href="/chat"),
+                rx.spacer(),
                 rx.text(AuthState.user.email),
                 rx.button("Logout", color_scheme="red", on_click=AuthState.handle_logout),
                 spacing="4",

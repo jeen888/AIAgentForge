@@ -1,5 +1,7 @@
 import reflex as rx
 
+from AIAgentForge.pages.collections_page import collections_page
+
 try:
     from AIAgentForge.pages.dashboard import dashboard_page
 except ImportError:
@@ -16,6 +18,7 @@ app=rx.App()
 # 보호된 라우트에 on_load 이벤트 핸들러를 추가하여 인증 상태를 확인하고, 인증되지 않은 사용자를 로그인 페이지로 리디렉션합니다.
 app.add_page(dashboard_page, route="/", on_load=AuthState.check_auth)
 app.add_page(chat_page, route="/chat", on_load=AuthState.check_auth)
+app.add_page(collections_page, route="/collections", on_load=AuthState.check_auth)
 
 # 공개 라우트
 app.add_page(login_page, route="/login")
